@@ -14,8 +14,8 @@ function ChooseRecipe({ recipes }) {
 
     const handleRecipeChange = (e) => {
         console.log(e.target.value)
-        if(selectedRecipe === 'default') {
-           return setSelectedRecipe(null)
+        if (selectedRecipe === 'default') {
+            return setSelectedRecipe(null)
         }
         setSelectedRecipe(recipes.find(recipe => recipe.recipeName === e.target.value))
     }
@@ -31,17 +31,20 @@ function ChooseRecipe({ recipes }) {
                 </select>
                 <button onClick={handleRecipeChange}>Choose Recipe</button>
             </div>
-            {selectedRecipe ? <div>
-               <h3>{selectedRecipe.recipeName}</h3>
-               <p>Ingredients: {selectedRecipe.ingredients.map((ingredient, i) => {
-                return (
-                    <span key={i}>{ingredient}, </span>
-                )
-               })}</p>
-            </div> :
-            <div>
-                <h3>No Recipe Selected</h3>
-            </div>}
+            {selectedRecipe ?
+                <div>
+                    <h2>Selected Recipe</h2>
+                    <h3>{selectedRecipe.recipeName}</h3>
+                    <p>Ingredients: {selectedRecipe.ingredients.map((ingredient, i) => {
+                        return (
+                            <span key={i}>{ingredient}, </span>
+                        )
+                    })}</p>
+                </div>
+                :
+                <div>
+                    <h3>No Recipe Selected</h3>
+                </div>}
         </div>
     )
 }
