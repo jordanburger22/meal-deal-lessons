@@ -13,35 +13,25 @@ function ChooseRecipe({ recipes }) {
     })
 
     const handleRecipeChange = (e) => {
-        if(selectedRecipe) {
+        console.log(e.target.value)
+        if(selectedRecipe === 'default') {
            return setSelectedRecipe(null)
         }
-        setSelectedRecipe(recipes[0])
+        setSelectedRecipe(recipes.find(recipe => recipe.recipeName === e.target.value))
     }
 
+    console.log(selectedRecipe)
 
     return (
         <div>
             <div>
                 <h2>Choose Recipe</h2>
-                <select>
+                <select onChange={handleRecipeChange}>
                     <option value="default">Choose a recipe</option>
                     {recipeOptions}
                 </select>
                 <button onClick={handleRecipeChange}>Choose Recipe</button>
             </div>
-            
-            {/* && is for when you want to display something if a condition is met and nothing if it is not */}
-            {/* {selectedRecipe && <div>
-               <h3>{selectedRecipe.recipeName}</h3>
-               <p>Ingredients: {selectedRecipe.ingredients.map((ingredient, i) => {
-                return (
-                    <span key={i}>{ingredient}, </span>
-                )
-               })}</p>
-            </div>} */}
-
-            {/* the ternary operator is a shorthand way of writing an if else statement when you want to display one thing or another */}
             {selectedRecipe ? <div>
                <h3>{selectedRecipe.recipeName}</h3>
                <p>Ingredients: {selectedRecipe.ingredients.map((ingredient, i) => {

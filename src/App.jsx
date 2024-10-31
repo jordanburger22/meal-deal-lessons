@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import ChooseRecipe from "./components/ChooseRecipe"
 import Header from "./components/Header"
+import AddRecipeForm from './components/AddRecipeForm';
 
 function App() {
 
@@ -22,25 +23,19 @@ function App() {
     }
   ])
 
-  function handleAddRecipe(){
+
+  function addRecipe(newRecipe){
     setRecipes(prevRecipes => {
-      return [
-        ...prevRecipes,
-        {
-          recipeName: "Pancakes",
-          ingredients: ["flour", "eggs", "milk"]
-        }
-      ]
+      return [...prevRecipes, newRecipe]
     })
   }
-
 
 
   return (
     <div className={`app ${darkMode}`}>
       <Header darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
       <ChooseRecipe recipes={recipes} />
-      <button onClick={handleAddRecipe}>Add Recipe</button>
+      <AddRecipeForm addRecipe={addRecipe} />
     </div>
   )
 }

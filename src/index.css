@@ -23,3 +23,8 @@
     padding: 5px;
     height: 10vh;
 }
+
+form{
+    display: flex;
+    flex-direction: column;
+}
