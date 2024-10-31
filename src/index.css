@@ -4,8 +4,16 @@
     box-sizing: border-box;
 }
 
-body{
-    background-color: darkgrey;
+.app{
+    min-height: 100vh;
+}
+
+.Dark{
+    background-color: darkgray;
+}
+
+.Light{
+    background-color: white;
 }
 
 .header{
