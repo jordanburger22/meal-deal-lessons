@@ -25,10 +25,14 @@ function App() {
     setRecipes(prevRecipes => [...prevRecipes, newRecipe]);
   }
 
+  function deleteRecipe(id){
+    setRecipes(prevRecipes => prevRecipes.filter(recipe => recipe.id !== id));
+  }
+
   return (
     <div className={`app ${darkMode ? 'dark' : 'light'}`}>
       <Header darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
-      <ChooseRecipe recipes={recipes} />
+      <ChooseRecipe recipes={recipes} deleteRecipe={deleteRecipe} />
       <AddRecipeForm addRecipe={addRecipe} />
     </div>
   );

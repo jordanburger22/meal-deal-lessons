@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 
 
-function ChooseRecipe({ recipes }) {
+function ChooseRecipe({ recipes, deleteRecipe }) {
 
     const [selectedRecipe, setSelectedRecipe] = useState(null)
 
@@ -20,6 +20,10 @@ function ChooseRecipe({ recipes }) {
         setSelectedRecipe(recipes.find(recipe => recipe.recipeName === e.target.value))
     }
 
+    function handleDelete() {
+        deleteRecipe(selectedRecipe.id)
+        setSelectedRecipe(null)
+    }
 
     return (
         <div>
@@ -40,6 +44,7 @@ function ChooseRecipe({ recipes }) {
                             <span key={i}>{ingredient}, </span>
                         )
                     })}</p>
+                    <button onClick={handleDelete}>Delete</button>
                 </div>
                 :
                 <div>
