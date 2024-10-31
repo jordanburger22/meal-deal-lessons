@@ -4,18 +4,6 @@ import Header from "./components/Header"
 
 function App() {
 
-  const state = useState('state')
-  console.log(state)
-
-  // updating state to a new value
-  const [string, setString] = useState('Hello World')
-
-  function changeString(){
-    setString('Updating state')
-  }
-
-  // toggling a value
-
   const [darkMode, setDarkMode] = useState('Light')
 
   function toggleDarkMode(){
@@ -34,15 +22,44 @@ function App() {
     }
   ])
 
+  // prevRecipes is the previous state
+  // after the return statement we choose the data type we want to return, it should match the data type of the state
+  // we return an array with the previous state and the new state
+  function handleAddRecipe(){
+    setRecipes(prevRecipes => {
+      return [
+        ...prevRecipes,
+        {
+          recipeName: "Pancakes",
+          ingredients: ["flour", "eggs", "milk"]
+        }
+      ]
+    })
+  }
 
+  const [user, setUser] = useState({
+    name: "John",
+    age: 20
+  })
 
+  function updateUser(){
+    setUser(prevUser => {
+      return {
+        ...prevUser,
+        age: 21,
+        address: "123 Main St"
+      }
+    })
+  }
+
+  console.log(user)
 
   return (
     <div className={`app ${darkMode}`}>
       <Header darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
       <ChooseRecipe recipes={recipes} />
-      <h1>{string}</h1>
-      <button onClick={changeString}>Change String</button>
+      <button onClick={handleAddRecipe}>Add Recipe</button>
+      <button onClick={updateUser}>Update User</button>
     </div>
   )
 }
