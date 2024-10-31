@@ -1,16 +1,13 @@
-
+import ChooseRecipe from "./components/ChooseRecipe"
+import Header from "./components/Header"
 
 function App() {
 
-  const greeting = <h1>Hello World</h1>
-
-  // JavaScript code above
   return (
-    // JSX code below
-    // <> (fragment) acts like a div without creating one on the DOM
+    // <Header /> is how we call the Header component function as JSX
     <>
-      {greeting}
-      <p>This is a paragraph</p>
+      <Header />
+      <ChooseRecipe />
     </>
   )
 }
