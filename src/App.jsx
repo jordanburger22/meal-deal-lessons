@@ -22,9 +22,6 @@ function App() {
     }
   ])
 
-  // prevRecipes is the previous state
-  // after the return statement we choose the data type we want to return, it should match the data type of the state
-  // we return an array with the previous state and the new state
   function handleAddRecipe(){
     setRecipes(prevRecipes => {
       return [
@@ -37,29 +34,13 @@ function App() {
     })
   }
 
-  const [user, setUser] = useState({
-    name: "John",
-    age: 20
-  })
 
-  function updateUser(){
-    setUser(prevUser => {
-      return {
-        ...prevUser,
-        age: 21,
-        address: "123 Main St"
-      }
-    })
-  }
-
-  console.log(user)
 
   return (
     <div className={`app ${darkMode}`}>
       <Header darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
       <ChooseRecipe recipes={recipes} />
       <button onClick={handleAddRecipe}>Add Recipe</button>
-      <button onClick={updateUser}>Update User</button>
     </div>
   )
 }
