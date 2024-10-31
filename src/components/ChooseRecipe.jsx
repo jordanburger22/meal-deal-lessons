@@ -1,7 +1,6 @@
 
 
 
-// function name should be same as file name and should be capital letter
 function ChooseRecipe() {
     return (
         <div>

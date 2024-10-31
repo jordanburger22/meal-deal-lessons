@@ -1,0 +1,17 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    background-color: darkgrey;
+}
+
+.header{
+    display: flex;
+    align-items: end;
+    border-bottom: solid black 1px;
+    padding: 5px;
+    height: 10vh;
+}
