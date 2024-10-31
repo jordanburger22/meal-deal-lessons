@@ -1,15 +1,22 @@
 
 
 
-function ChooseRecipe(props) {
+function ChooseRecipe({recipes}) {
 
-    const {greeting} = props
-    // we can pull out the value of greeting from props and assign it to a variable with objeect destructuring
+
+    const recipeOptions = recipes.map((recipe, i) => {
+        return (
+            <option key={i} value={recipe.recipeName}>{recipe.recipeName}</option>
+        )
+    })
 
     return (
         <div>
             <h2>Choose Recipe</h2>
-            <p>{greeting}</p>
+            <select>
+                <option value="default">Choose a recipe</option>
+                {recipeOptions}
+            </select>
         </div>
     )
 }
