@@ -20,7 +20,6 @@ function ChooseRecipe({ recipes }) {
         setSelectedRecipe(recipes.find(recipe => recipe.recipeName === e.target.value))
     }
 
-    console.log(selectedRecipe)
 
     return (
         <div>

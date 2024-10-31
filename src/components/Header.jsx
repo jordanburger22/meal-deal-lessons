@@ -3,14 +3,17 @@
 
 
 
-function Header(props){
+function Header(props) {
 
-    const {darkMode, toggleDarkMode} = props
+    const { darkMode, toggleDarkMode } = props
 
     return (
         <div className="header">
             <h1>Real Meals</h1>
-            <button onClick={toggleDarkMode}>{darkMode} Mode</button>
+            <label>
+                <input type="checkbox" checked={darkMode} onChange={toggleDarkMode} />
+                Dark Mode
+            </label>
         </div>
     )
 }

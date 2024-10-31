@@ -1,18 +1,16 @@
-*{
+body{
     margin: 0;
-    padding: 0;
-    box-sizing: border-box;
 }
 
 .app{
     min-height: 100vh;
 }
 
-.Dark{
+.dark{
     background-color: darkgray;
 }
 
-.Light{
+.light{
     background-color: white;
 }
 
