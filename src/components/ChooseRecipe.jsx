@@ -2,9 +2,13 @@ import React, { useState } from 'react';
 
 
 
-function ChooseRecipe({ recipes, deleteRecipe }) {
+function ChooseRecipe({ recipes, deleteRecipe, editRecipe }) {
 
     const [selectedRecipe, setSelectedRecipe] = useState(null)
+
+    const [editState, setEditState] = useState(selectedRecipe)
+
+    const [isFormOpen, setIsFormOpen] = useState(false)
 
     const recipeOptions = recipes.map((recipe, i) => {
         return (
@@ -18,12 +22,46 @@ function ChooseRecipe({ recipes, deleteRecipe }) {
             return setSelectedRecipe(null)
         }
         setSelectedRecipe(recipes.find(recipe => recipe.recipeName === e.target.value))
+        setEditState(recipes.find(recipe => recipe.recipeName === e.target.value))
     }
 
     function handleDelete() {
         deleteRecipe(selectedRecipe.id)
         setSelectedRecipe(null)
     }
+
+    function handleToggleForm() {
+        setIsFormOpen(prevIsFormOpen => !prevIsFormOpen)
+        setEditState(selectedRecipe)
+    }
+
+    function handleChange(e) {
+        const { name, value } = e.target
+        if (name === "ingredients") {
+            const ingredients = value.split(",")
+            setEditState(prevEditState => {
+                return {
+                    ...prevEditState,
+                    ingredients
+                }
+            })
+            return
+        }
+        setEditState(prevEditState => {
+            return {
+                ...prevEditState,
+                [name]: value
+            }
+        })
+    }
+
+    function handleSubmit(e) {
+        e.preventDefault()
+        editRecipe(editState)
+        setSelectedRecipe(editState)
+        setIsFormOpen(false)
+    }
+
 
     return (
         <div>
@@ -39,12 +77,23 @@ function ChooseRecipe({ recipes, deleteRecipe }) {
                 <div>
                     <h2>Selected Recipe</h2>
                     <h3>{selectedRecipe.recipeName}</h3>
-                    <p>Ingredients: {selectedRecipe.ingredients.map((ingredient, i) => {
-                        return (
-                            <span key={i}>{ingredient}, </span>
-                        )
-                    })}</p>
+                    <p>Ingredients: </p>
+                    <ul>
+                        {selectedRecipe.ingredients.map((ingredient, i) => {
+                            return (
+                                <li key={i}>{ingredient}</li>
+                            )
+                        })}
+                    </ul>
                     <button onClick={handleDelete}>Delete</button>
+                    <button onClick={handleToggleForm}>Edit</button>
+                    {isFormOpen &&
+                        <form onSubmit={handleSubmit}>
+                            <input name='recipeName' value={editState.recipeName} onChange={handleChange} />
+                            <textarea name='ingredients' value={editState.ingredients} onChange={handleChange} />
+                            <button type='submit'>Update</button>
+                            <button onClick={handleToggleForm}>Cancel</button>
+                        </form>}
                 </div>
                 :
                 <div>
